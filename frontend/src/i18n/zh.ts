@@ -18,6 +18,7 @@ export default {
   jifa: {
     common: {
       confirm: '确定',
+      cancel: '取消',
       submit: '提交',
       back: '返回',
       operations: '操作',
@@ -31,7 +32,8 @@ export default {
       messageBeforeLeave: '确定离开吗？',
       clickToLoadMore: '点击加载更多数据',
       expandedColumnWidth: '增加列宽',
-      comma: '，'
+      comma: '，',
+      alertBeforeDiscard: '确定销毁分析结果吗?'
     },
 
     header: {
@@ -115,7 +117,8 @@ export default {
       success: '分析成功',
       comparison: '分析对比',
       selectComparisonTargets: '选择对比目标',
-      setting: '分析设置'
+      setting: '分析设置',
+      discard: '销毁分析结果'
     },
 
     heapDump,

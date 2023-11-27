@@ -18,6 +18,7 @@ export default {
   jifa: {
     common: {
       confirm: 'Confirm',
+      cancel: 'Cancel',
       submit: 'Submit',
       back: 'Back',
       operations: 'Operations',
@@ -31,7 +32,8 @@ export default {
       messageBeforeLeave: 'Sure to leave?',
       clickToLoadMore: 'Click to load more data',
       expandedColumnWidth: '+ Width',
-      comma: ', '
+      comma: ', ',
+      alertBeforeDiscard: 'Sure to discard?'
     },
 
     header: {
@@ -115,7 +117,8 @@ export default {
       success: 'Analysis successful',
       comparison: 'Comparison',
       selectComparisonTargets: 'Select Targets',
-      setting: 'Setting'
+      setting: 'Setting',
+      discard: 'Discard'
     },
 
     heapDump,

@@ -12,7 +12,8 @@
  -->
 <script setup lang="ts">
 import DownloadLink from '@/components/common/DownloadLink.vue';
-import { SetUp } from '@element-plus/icons-vue';
+import { ElMessageBox } from 'element-plus';
+import { SetUp, Delete } from '@element-plus/icons-vue';
 import { t } from '@/i18n/i18n';
 import { useAnalysisApiRequester } from '@/composables/analysis-api-requester';
 import { Phase, useAnalysisStore } from '@/stores/analysis';
@@ -20,12 +21,22 @@ import { Phase, useAnalysisStore } from '@/stores/analysis';
 const { request } = useAnalysisApiRequester();
 
 const analysis = useAnalysisStore();
-function clean() {
-  request('clean').then(() => {
-    useAnalysisStore().leaveGuard = false;
-    location.reload();
-  });
+
+function showSetup() {
+  analysis.setShowSetupPage(true)
 }
+
+function discard() {
+  ElMessageBox.confirm(t('common.alertBeforeDiscard'))
+    .then(() => {
+      request('clean').then(() => {
+        useAnalysisStore().leaveGuard = false;
+        location.reload();
+      })
+    })
+    .catch(() => {});
+}
+
 </script>
 <template>
   <el-divider direction="vertical" />
@@ -34,8 +45,14 @@ function clean() {
   <template v-if="analysis.phase === Phase.SUCCESS || analysis.phase === Phase.FAILURE">
     <el-divider direction="vertical" />
 
-    <el-button link class="ej-header-button" :icon="SetUp" @click="clean">
+    <el-button link class="ej-header-button" :icon="SetUp" @click="showSetup">
       {{ t('analysis.setting') }}
+    </el-button>
+  </template>
+  <template v-if="analysis.phase === Phase.SUCCESS">
+    <el-divider direction="vertical" />
+    <el-button link class="ej-header-button" :icon="Delete" @click="discard">
+      {{ t('analysis.discard') }}
     </el-button>
   </template>
 </template>
